@@ -1,9 +1,7 @@
-FROM jboss/wildfly:latest
-
-USER jboss
+FROM jboss/wildfly:20.0.1.Final
 
 EXPOSE 8080 8081 9990 8443 8787
 
-RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
+ADD ADD ./target/openshift-test-0.0.1.jar /opt/jboss/wildfly/standalone/deployments/
 
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+CMD ["/opt/jboss/WildFly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
